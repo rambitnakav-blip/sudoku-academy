@@ -1,28 +1,42 @@
 # 数独成长学院（Sudoku Academy）
 
-独立数独成长训练网页，面向7—28岁学习者。当前版本提供9×9数独练习、唯一解题目生成、提示、计时和本地完成次数记录。
+面向7—28岁学习者的独立数独学习网页。按年龄映射22个学习等级，循序经历4×4、6×6、9×9棋盘。
 
-## 在线发布（首次需要启用一次）
+## 当前功能
 
-1. 打开仓库 **Settings → Pages**：https://github.com/rambitnakav-blip/sudoku-academy/settings/pages
-2. 在 **Build and deployment → Source** 中选择 **GitHub Actions**。
-3. 保存后，后续每次推送到 `main` 都会自动部署。
-4. 在线地址：https://rambitnakav-blip.github.io/sudoku-academy/
+- 22级课程路线：每级有学习目标、概念讲解、解题方法、挑战任务和提示。
+- 4×4（2×2宫）、6×6（2×3宫）、9×9（3×3宫）三种棋盘。
+- 随机生成完整终盘，并通过回溯计数验证题目唯一解。
+- 逻辑分析器：裸单数、隐性单数、裸数对、隐性数对、锁定候选数、裸三数组、X-Wing、Swordfish、XY-Wing。
+- 分步提示：给出逻辑技巧、格子位置和成立原因，不自动替玩家填答案。
+- 候选数显示、错误检查、计时、答案查看、键盘操作。
+- 本机保存累计通关、本级完成次数和最佳时间；无需注册，不上传游戏记录。
+- Service Worker 缓存核心文件，支持首次联网加载后的离线使用。
+- GitHub Actions 自动检查 JavaScript 语法和数独引擎基础测试。
 
-仓库已包含自动部署工作流：`.github/workflows/pages.yml`。当前 GitHub App 连接可以提交代码，但没有 Pages 管理权限，因此不能代替仓库所有者完成首次 Pages 开通。
+## 项目文件
 
-## 文件
+- `index.html`：游戏和交互界面
+- `curriculum.js`：22级课程纲要
+- `solver.js`：唯一解验证、候选数和逻辑技巧分析
+- `tests/smoke.js`：4×4、6×6、9×9基础测试
+- `manifest.webmanifest`、`sw.js`、`icon.svg`：网页应用和离线支持
+- `.github/workflows/pages.yml`：自动验证与Pages部署
 
-- `index.html`：游戏页面与数独逻辑
-- `manifest.webmanifest`：网页应用配置
-- `sw.js`：离线缓存
-- `icon.svg`：应用图标
-- `.github/workflows/pages.yml`：GitHub Pages 自动部署
+## 重要说明
 
-## 当前版本边界
+22级是课程学习路线，不是按年龄推断智力或能力。实际题目会显示逻辑分析器识别到的技巧；目前引擎已实现上述列出的技巧，复杂链式推理、染色、更多鱼形技巧和严格的高阶题目分级仍属于后续引擎扩展范围。题目唯一解由回溯计数保证，但唯一解不等于一定能仅用已实现的逻辑技巧解出。
 
-V0.1 是可玩的原型。22个年龄等级目前主要呈现学习主题和逐级提高的题目线索数量；高阶逻辑技巧的教学、按技巧生成题目、严格的难度认证、错题复习和跨设备同步尚未完成。年龄是成长路线，不是能力判断。
+## 首次启用在线网站
 
-## 隐私
+仓库代码和自动部署工作流已准备好。首次发布需要仓库所有者在 GitHub 设置中完成一次授权：
 
-完成次数保存在当前浏览器的 localStorage，不上传玩家个人资料或游戏记录。
+1. 打开 [Settings → Pages](https://github.com/rambitnakav-blip/sudoku-academy/settings/pages)。
+2. 在 **Build and deployment → Source** 选择 **GitHub Actions**。
+3. 保存后，后续推送到 `main` 会自动执行验证和部署。
+
+当前 GitHub App 连接可以提交仓库代码，但 GitHub Pages 首次开通接口返回权限不足，因此无法替仓库所有者完成这一步。
+
+## 在线地址
+
+https://rambitnakav-blip.github.io/sudoku-academy/
