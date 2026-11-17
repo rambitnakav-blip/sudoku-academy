@@ -1,4 +1,4 @@
-name: Deploy Sudoku Academy to GitHub Pages
+name: Validate and deploy Sudoku Academy
 on:
   push:
     branches: [main]
@@ -11,7 +11,21 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: |
+          node --check solver.js
+          node --check curriculum.js
+      - name: Run Sudoku engine smoke tests
+        run: node tests/smoke.js
   deploy:
+    needs: validate
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
