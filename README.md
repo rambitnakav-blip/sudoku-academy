@@ -27,15 +27,9 @@
 
 22级是课程学习路线，不是按年龄推断智力或能力。实际题目会显示逻辑分析器识别到的技巧；目前引擎已实现上述列出的技巧，复杂链式推理、更多鱼形技巧和严格的高阶题目分级仍属于后续引擎扩展范围。题目唯一解由回溯计数保证，但唯一解不等于一定能仅用已实现的逻辑技巧解出。
 
-## 首次启用在线网站
+## 在线发布方式
 
-仓库代码和自动部署工作流已准备好。首次发布需要仓库所有者在 GitHub 设置中完成一次授权：
-
-1. 打开 [Settings → Pages](https://github.com/rambitnakav-blip/sudoku-academy/settings/pages)。
-2. 在 **Build and deployment → Source** 选择 **GitHub Actions**。
-3. 保存后，后续推送到 `main` 会自动执行验证和部署。
-
-当前 GitHub App 连接可以提交仓库代码，但 GitHub Pages 首次开通接口返回权限不足，因此无法替仓库所有者完成这一步。
+当前使用 GitHub Pages 免费的分支发布方式：在 [Settings → Pages](https://github.com/rambitnakav-blip/sudoku-academy/settings/pages) 中选择 **Deploy from a branch**，Branch 选择 `main`，Folder 选择 `/(root)`。仓库根目录含 `.nojekyll`，用于让 GitHub Pages 直接发布静态文件而不经过 Jekyll。后续推送到 `main` 会自动触发 Pages 更新；GitHub Actions 另行执行 JavaScript 语法和数独引擎测试。
 
 ## 在线地址
 
