@@ -1,6 +1,6 @@
 {
-  "name": "数独成长学院",
-  "short_name": "数独学院",
+  "name": "基础",
+  "short_name": "基础",
   "description": "从7岁到28岁的循序渐进数独逻辑训练",
   "start_url": "./",
   "scope": "./",
